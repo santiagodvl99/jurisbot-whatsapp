@@ -103,8 +103,8 @@ def webhook():
 
     from flask import Response  # asegúrate de tenerlo importado arriba
 
-xml_response = respond_whatsapp(reply)
-return Response(xml_response, mimetype='application/xml')
+    xml_response = respond_whatsapp(reply)
+    return Response(xml_response, mimetype='application/xml')
 
 def respond_whatsapp(message):
     return f"""<?xml version="1.0" encoding="UTF-8"?>
