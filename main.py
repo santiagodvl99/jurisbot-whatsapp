@@ -1,6 +1,7 @@
 from flask import Flask, request
 import requests
 import os
+from twilio.twiml.messaging_response import MessagingResponse
 
 app = Flask(__name__)
 
@@ -103,9 +104,10 @@ def webhook():
     return respond_whatsapp(reply)
 
 def respond_whatsapp(message):
-    return f"""<Response>
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<Response>
     <Message>{message}</Message>
-    </Response>"""
+</Response>"""
 
 def get_gpt_response(user_input):
     api_key = os.environ.get("OPENAI_API_KEY")
