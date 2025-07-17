@@ -109,7 +109,7 @@ def respond_whatsapp(message):
 
 def get_gpt_response(user_input):
     api_key = os.environ.get("OPENAI_API_KEY")
-
+    
     url = "https://api.openai.com/v1/chat/completions"
     headers = {
         "Authorization": f"Bearer {api_key}",
@@ -126,7 +126,15 @@ def get_gpt_response(user_input):
 
     response = requests.post(url, headers=headers, json=data)
     result = response.json()
-    return result['choices'][0]['message']['content']
+    
+    # Agrega este print para depurar
+    print("Respuesta completa de OpenAI:", result)
+
+    # Previene error si 'choices' no está
+    if "choices" not in result:
+        return f"⚠️ Error de OpenAI: {result.get('error', {}).get('message', 'Sin detalles')}"
+    
+    return result["choices"][0]["message"]["content"]
 
 import os
 
