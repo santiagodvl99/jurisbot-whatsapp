@@ -79,7 +79,7 @@ def home():
     return "¡Bot legal activo!"
 
 # Ruta para recibir mensajes desde Twilio
-@app.route('/webhook', methods=['POST'])
+@app.route('/', methods=['POST'])
 def webhook():
     sender = request.form.get('From')  # Número del usuario
     message = request.form.get('Body')  # Mensaje enviado
